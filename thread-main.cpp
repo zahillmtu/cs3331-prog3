@@ -8,6 +8,8 @@
 // -----------------------------------------------------------
 
 #include <iostream>
+#include "thread.h"
+
 using namespace std;
 
 int main(void)
@@ -28,5 +30,11 @@ int main(void)
         cout << xArr[i] << ' ';
     }
     cout << endl;
+
+    MyThread *newThread;
+
+    newThread = new MyThread(20);
+    newThread->Print();
+
     return 0;
 }

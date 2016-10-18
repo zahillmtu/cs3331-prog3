@@ -6,3 +6,10 @@
 // PROGRAM PURPOSE :
 //    Contains all the class definitions
 // -----------------------------------------------------------
+
+class MyThread
+{
+    public:
+        MyThread(int countAmount);
+        void Print(void);
+};
