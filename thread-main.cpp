@@ -6,3 +6,27 @@
 // PROGRAM PURPOSE :
 //    Contains the main program
 // -----------------------------------------------------------
+
+#include <iostream>
+using namespace std;
+
+int main(void)
+{
+    int numVals;
+    int i;
+    // Get the first value
+    cin >> numVals;
+
+    int xArr[numVals];
+    for (i = 0; i < numVals; i++)
+    {
+        cin >> xArr[i];
+    }
+
+    for (i = 0; i < numVals; i++)
+    {
+        cout << xArr[i] << ' ';
+    }
+    cout << endl;
+    return 0;
+}
