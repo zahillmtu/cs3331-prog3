@@ -19,15 +19,15 @@ int main(void)
     // Get the first value
     cin >> numVals;
 
-    int xArr[numVals];
+    int bArr[numVals][numVals];
     for (i = 0; i < numVals; i++)
     {
-        cin >> xArr[i];
+        cin >> bArr[0][i];
     }
 
     for (i = 0; i < numVals; i++)
     {
-        cout << xArr[i] << ' ';
+        cout << bArr[0][i] << ' ';
     }
     cout << endl;
 

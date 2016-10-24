@@ -29,3 +29,8 @@ void MyThread::Print(void)
     }
     cout << endl;
 }
+
+void MyThread::ThreadPrint(int n)
+{
+    // print stuff here
+}

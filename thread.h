@@ -6,10 +6,14 @@
 // PROGRAM PURPOSE :
 //    Contains all the class definitions
 // -----------------------------------------------------------
+#include "ThreadClass.h"
 
-class MyThread
+class MyThread : public Thread
 {
     public:
         MyThread(int countAmount);
         void Print(void);
+    private:
+        void ThreadPrint(int);
+        void ThreadFunc(int);
 };
