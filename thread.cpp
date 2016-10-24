@@ -8,26 +8,39 @@
 // -----------------------------------------------------------
 
 #include <iostream>
+#include <math.h>
 #include "thread.h"
 
 using namespace std;
 
-int count;
+int h;
+int i;
+int * bArr;
+int numVals;
 
-MyThread::MyThread(int countAmount)
+MyThread::MyThread(int hVal, int iVal, int num,  int * bArrPtr)
 {
-    count = countAmount;
+    h = hVal;
+    i = iVal;
+    numVals = num;
+    bArr = bArrPtr;
+
+    // Make a threadname
 }
 
-void MyThread::Print(void)
+void MyThread::ThreadFunc()
 {
-    int i;
-    cout << "Printing from thread: " << endl;
-    for (i = count; i < count + 10; i++)
+    Thread::ThreadFunc();
+
+    if (i - pow(2, h - 1) < 0)
     {
-        cout << i << ' ';
+        *((bArr + (h * numVals)) + i) = *((bArr + ((h - 1) * numVals)) + i);
     }
-    cout << endl;
+    else
+    {
+        *((bArr + (h * numVals)) + i) = *((bArr + ((h - 1) * numVals)) + i) + *((bArr + ((h-1) * numVals)) + (i - ((int)pow(2, h - 1))));
+    }
+    Exit();
 }
 
 void MyThread::ThreadPrint(int n)

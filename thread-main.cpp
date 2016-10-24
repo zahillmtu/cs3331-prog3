@@ -22,7 +22,9 @@ int main(void)
     // Get the first value
     cin >> numVals;
 
-    int bArr[numVals][numVals];
+    k = (int) log2(numVals);
+
+    int bArr[k + 1][numVals];
     for (i = 0; i < numVals; i++)
     {
         cin >> bArr[0][i];
@@ -34,20 +36,17 @@ int main(void)
     }
     cout << endl;
 
-    k = (int) log2(numVals);
     cout << "K: " << k << endl;
 
+    MyThread *newThread;
     for (h = 1; h < k + 1; h++)
     {
         for (i = 0; i < numVals; i++)
         {
-            if (i - pow(2, h - 1) < 0)
-            {
-                bArr[h][i] = bArr[h - 1][i];
-            }
-            else {
-                bArr[h][i] = bArr[h - 1][i] + bArr[h - 1][( i - ((int) pow(2, h - 1)))];
-            }
+            // cast to int array and use 2D array as a 1D array
+            newThread = new MyThread(h, i, numVals, (int *) bArr);
+            newThread->Begin();
+            newThread->Join();
         }
     }
 
@@ -59,10 +58,11 @@ int main(void)
 
     cout << endl;
 
-    MyThread *newThread;
+    /*MyThread *newThread;
 
     newThread = new MyThread(20);
     newThread->Print();
+    */
 
     return 0;
 }

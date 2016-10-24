@@ -11,9 +11,9 @@
 class MyThread : public Thread
 {
     public:
-        MyThread(int countAmount);
+        MyThread(int hVal, int iVal, int num, int * bArrPtr);
         void Print(void);
     private:
         void ThreadPrint(int);
-        void ThreadFunc(int);
+        void ThreadFunc();
 };
