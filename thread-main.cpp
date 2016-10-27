@@ -4,7 +4,10 @@
 // PROGRAM ASSIGNMENT #3
 // FILE NAME : thread-main.cpp
 // PROGRAM PURPOSE :
-//    Contains the main program
+//    Contains the main program, used to load in data and
+//    compute the prefix sum computation concurrently. Creates
+//    threads to compute each piece of the problem
+//    concurrently.
 // -----------------------------------------------------------
 
 #include <iostream>
@@ -28,6 +31,18 @@ void printWrap(char buf[100]) {
     write(1, buf, strlen(buf));
 }
 
+// -----------------------------------------------------------
+// FUNCTION main :
+//    A warm up multithreaded program solving The Prefix Sum
+//    Problem. main() reads in the initial data and places it
+//    into an array, then creates new threads to calculate
+//    each piece of the problem concurrently
+// PARAMETER USAGE :
+//    buf - A character array of size 100 containing
+//          the print statement
+// FUNCTION CALLED :
+//    write()
+// -----------------------------------------------------------
 int main(void)
 {
     int numVals;
@@ -59,6 +74,7 @@ int main(void)
     sprintf(buf, "\n");
     printWrap(buf);
 
+    // Array to hold the threads
     MyThread *newThread[numVals];
     for (h = 1; h < k + 1; h++)
     {
