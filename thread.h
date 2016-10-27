@@ -18,6 +18,6 @@ class MyThread : public Thread
         int i;
         int * bArr;
         int numVals;
-        void ThreadPrint(int);
+        void printWrap(char*);
         void ThreadFunc();
 };

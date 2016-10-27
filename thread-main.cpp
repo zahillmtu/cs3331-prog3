@@ -66,6 +66,8 @@ int main(void)
         {
             // cast to int array and use 2D array as a 1D array
             newThread[i] = new MyThread(h, i, numVals, (int *) bArr);
+            sprintf(buf, "\tThread %d created\n", i);
+            printWrap(buf);
             newThread[i]->Begin();
         }
         for (i = 0; i < numVals; i++)

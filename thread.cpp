@@ -9,9 +9,24 @@
 
 #include <iostream>
 #include <math.h>
+#include <stdio.h>
+#include <string.h>
 #include "thread.h"
 
 using namespace std;
+
+// -----------------------------------------------------------
+// FUNCTION printWrap :
+//    A wrapper method for printing using write()
+// PARAMETER USAGE :
+//    buf - A character array of size 100 containing
+//          the print statement
+// FUNCTION CALLED :
+//    write()
+// -----------------------------------------------------------
+void MyThread::printWrap(char buf[100]) {
+    write(1, buf, strlen(buf));
+}
 
 MyThread::MyThread(int hVal, int iVal, int num,  int * bArrPtr)
           :h(hVal), i(iVal), numVals(num), bArr(bArrPtr)
@@ -19,22 +34,25 @@ MyThread::MyThread(int hVal, int iVal, int num,  int * bArrPtr)
     // Make a threadname
 }
 
+
 void MyThread::ThreadFunc()
 {
     Thread::ThreadFunc();
+    char buf[100];
 
     if (i - pow(2, h - 1) < 0)
     {
         *((bArr + (h * numVals)) + i) = *((bArr + ((h - 1) * numVals)) + i);
+        sprintf(buf, "\tThread %d copies x[%d]\n", i, i);
+        printWrap(buf);
     }
     else
     {
         *((bArr + (h * numVals)) + i) = *((bArr + ((h - 1) * numVals)) + i) + *((bArr + ((h-1) * numVals)) + (i - ((int)pow(2, h - 1))));
+        sprintf(buf, "\tThread %d computes x[%d] + x[%d-2^(%d-1)]\n", i, i, i, h);
+        printWrap(buf);
     }
+    sprintf(buf, "\tThread %d exits\n", i);
+    printWrap(buf);
     Exit();
-}
-
-void MyThread::ThreadPrint(int n)
-{
-    // print stuff here
 }
