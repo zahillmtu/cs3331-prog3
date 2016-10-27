@@ -9,9 +9,24 @@
 
 #include <iostream>
 #include <math.h>
+#include <stdio.h>
+#include <string.h>
 #include "thread.h"
 
 using namespace std;
+
+// -----------------------------------------------------------
+// FUNCTION printWrap :
+//    A wrapper method for printing using write()
+// PARAMETER USAGE :
+//    buf - A character array of size 100 containing
+//          the print statement
+// FUNCTION CALLED :
+//    write()
+// -----------------------------------------------------------
+void printWrap(char buf[100]) {
+    write(1, buf, strlen(buf));
+}
 
 int main(void)
 {
@@ -19,24 +34,30 @@ int main(void)
     int i;
     int h;
     int k;
+    char buf[100];
+
+    sprintf(buf, "Concurrent Prefix Sum Computation\n\n");
+    printWrap(buf);
+
     // Get the first value
     cin >> numVals;
+    sprintf(buf, "Number of input data = %d\n", numVals);
+    printWrap(buf);
 
     k = (int) log2(numVals);
 
+    // Load the array into the first row of bArr[][]
+    sprintf(buf, "Input array:\n");
+    printWrap(buf);
     int bArr[k + 1][numVals];
     for (i = 0; i < numVals; i++)
     {
         cin >> bArr[0][i];
+        sprintf(buf, "%5d", bArr[0][i]);
+        printWrap(buf);
     }
-
-    for (i = 0; i < numVals; i++)
-    {
-        cout << bArr[0][i] << ' ';
-    }
-    cout << endl;
-
-    cout << "K: " << k << endl;
+    sprintf(buf, "\n");
+    printWrap(buf);
 
     MyThread *newThread[numVals];
     for (h = 1; h < k + 1; h++)
@@ -51,21 +72,31 @@ int main(void)
         {
             newThread[i]->Join();
         }
+        if (h != k)
+        {
+            // Print out the results of this run
+            sprintf(buf, "Result after run %d:\n", h);
+            printWrap(buf);
+            for (i = 0; i < numVals; i++)
+            {
+                sprintf(buf, "%5d", bArr[h][i]);
+                printWrap(buf);
+            }
+            sprintf(buf, "\n");
+            printWrap(buf);
+        }
     }
 
-    cout << "Printing the final result" << endl;
+    // Print out the results of this run
+    sprintf(buf, "Final result after run %d:\n", k);
+    printWrap(buf);
     for (i = 0; i < numVals; i++)
     {
-        cout << bArr[k][i] << ' ';
+        sprintf(buf, "%5d", bArr[k][i]);
+        printWrap(buf);
     }
-
-    cout << endl;
-
-    /*MyThread *newThread;
-
-    newThread = new MyThread(20);
-    newThread->Print();
-    */
+    sprintf(buf, "\n");
+    printWrap(buf);
 
     return 0;
 }
