@@ -14,6 +14,10 @@ class MyThread : public Thread
         MyThread(int hVal, int iVal, int num, int * bArrPtr);
         void Print(void);
     private:
+        int h;
+        int i;
+        int * bArr;
+        int numVals;
         void ThreadPrint(int);
         void ThreadFunc();
 };

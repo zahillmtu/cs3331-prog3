@@ -13,18 +13,9 @@
 
 using namespace std;
 
-int h;
-int i;
-int * bArr;
-int numVals;
-
 MyThread::MyThread(int hVal, int iVal, int num,  int * bArrPtr)
+          :h(hVal), i(iVal), numVals(num), bArr(bArrPtr)
 {
-    h = hVal;
-    i = iVal;
-    numVals = num;
-    bArr = bArrPtr;
-
     // Make a threadname
 }
 

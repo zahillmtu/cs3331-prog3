@@ -38,15 +38,18 @@ int main(void)
 
     cout << "K: " << k << endl;
 
-    MyThread *newThread;
+    MyThread *newThread[numVals];
     for (h = 1; h < k + 1; h++)
     {
         for (i = 0; i < numVals; i++)
         {
             // cast to int array and use 2D array as a 1D array
-            newThread = new MyThread(h, i, numVals, (int *) bArr);
-            newThread->Begin();
-            newThread->Join();
+            newThread[i] = new MyThread(h, i, numVals, (int *) bArr);
+            newThread[i]->Begin();
+        }
+        for (i = 0; i < numVals; i++)
+        {
+            newThread[i]->Join();
         }
     }
 
