@@ -1,2 +1,32 @@
-# cs3331-prog3
+// -----------------------------------------------------------
+// NAME : Zachary Hill                   User ID: zahill
+// DUE DATE : 10/28/2016
+// PROGRAM ASSIGNMENT #3
+// FILE NAME : README
+// PROGRAM PURPOSE :
+//    Contains answers to the programming assignment questions
+// -----------------------------------------------------------
 ThreadMentor Multi-threaded Programming assignment
+
+Question 1:
+   No, there are no race conditions because no data is being acccesed
+   concurrently. Each computation reads from data that is no longer being
+   changed and writes to a place that is not yet being read, therefore
+   no collisions occur.
+
+Question 2:
+   If the parents have the correct value then after the computation
+   the child will have the correct value. Given that the initial values
+   cannot be "incorrect", each successive computation will be correct,
+   and any value not updated will be passed down to 
+
+Question 3:
+   The value cannot be saved back into x[i]. The value x[i] could be 
+   needed for futher calculations in another thread in run h. Overwriting
+   x[i] would result in inaccurate data for the other calculations.
+
+Question 4:
+   The solution for a specific index can be found only if the two
+   parent solutions have already been found. Given n Threads, one for 
+   each index, a thread could use busy waiting to wait until the 
+   parent solutions were found and then could find it's own.
